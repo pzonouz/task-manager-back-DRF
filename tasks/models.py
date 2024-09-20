@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Task(models.Model):
@@ -16,6 +17,9 @@ class Task(models.Model):
     due_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    progress_percentage = models.IntegerField(
+        default=0, validators=[MaxValueValidator(100), MinValueValidator(0)]
+    )
 
     def __str__(self):
         return self.name

@@ -21,4 +21,5 @@ class TaskSerializer(ModelSerializer):
             "due_date",
             "created_at",
             "updated_at",
+            "progress_percentage",
         )
