@@ -1,0 +1,17 @@
+@host=http://127.0.0.1:8000/api/v1/categories
+###
+GET /
+###
+
+POST /
+Content-Type:application/json
+{"name":"High"}
+###
+
+PATCH /1/
+Content-Type:application/json
+{"name":"Medium"}
+###
+
+DELETE /1/
+###
