@@ -5,12 +5,12 @@ GET /
 
 POST /
 Content-Type:application/json
-{"name":"High"}
+{"name":"Low"}
 ###
 
-PATCH /1/
+PATCH /3/
 Content-Type:application/json
-{"name":"Medium"}
+{"name":"High"}
 ###
 
 DELETE /1/

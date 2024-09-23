@@ -1,11 +1,13 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.utils.text import slugify
+import uuid
 
 
 class Task(models.Model):
+    id = models.UUIDField(
+        primary_key=True, unique=True, default=uuid.uuid4, editable=False
+    )
     name = models.CharField(max_length=255, unique=True)
-    slug = models.CharField(max_length=300, unique=True)
     description = models.TextField()
     priority = models.ForeignKey(
         "priorities.Priority", on_delete=models.CASCADE, related_name="tasks"
@@ -28,6 +30,5 @@ class Task(models.Model):
 
     def save(self, *args, **kwargs):
         self.name = self.name.lower()
-        self.slug = slugify(self.name)
         self.description = self.description.lower()
         super(Task, self).save(*args, **kwargs)

@@ -10,9 +10,8 @@ class TaskSerializer(ModelSerializer):
 
     class Meta:
         model = Task
-        read_only_fields = ("priority_obj", "category_obj")
+        read_only_fields = ("priority_obj", "category_obj", "id")
         fields = read_only_fields + (
-            "id",
             "name",
             "description",
             "priority",

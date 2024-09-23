@@ -5,13 +5,13 @@ GET /
 
 POST /
 Content-Type:application/json
-{"name":"High"}
+{"name":"Personal"}
 ###
 
-PATCH /1/
+PATCH /2/
 Content-Type:application/json
-{"name":"Medium"}
+{"name":"Work"}
 ###
 
-DELETE /1/
+DELETE /3/
 ###
