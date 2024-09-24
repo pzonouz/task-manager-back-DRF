@@ -8,7 +8,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 from priorities.views import PriorityViewSet
-from tasks.views import TaskViewSet
+from tasks.views import TaskCompleteView, TaskViewSet
 
 
 urlpatterns = [
@@ -27,14 +27,16 @@ schema_view = get_schema_view(
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
-
+urlpatterns += [
+    path("api/v1/tasks/<slug:id>/complete-task/", TaskCompleteView.as_view())
+]
 
 router = SimpleRouter()
 router.register(r"categories", CategoryViewSet, basename="Category")
 router.register(r"priorities", PriorityViewSet, basename="Priority")
 router.register(r"tasks", TaskViewSet, basename="Task")
 
-urlpatterns = [path("api/v1/", include(router.urls))]
+urlpatterns += [path("api/v1/", include(router.urls))]
 urlpatterns += [
     path(
         "api/v1/swagger<format>/",
