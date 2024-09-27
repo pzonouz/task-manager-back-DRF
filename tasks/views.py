@@ -19,6 +19,7 @@ class TaskCompleteView(APIView):
                 return HttpResponseNotFound({})
         except Exception:
             return HttpResponseNotFound({})
-        task.completed = not task.completed
+        task.progress_percentage = 100
+        task.completed = True
         task.save()
         return HttpResponse()

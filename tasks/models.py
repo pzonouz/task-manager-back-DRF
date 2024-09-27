@@ -32,4 +32,8 @@ class Task(models.Model):
     def save(self, *args, **kwargs):
         self.name = self.name.lower()
         self.description = self.description.lower()
+        if self.progress_percentage == 100:
+            self.completed = True
+        if self.progress_percentage < 100:
+            self.completed = False
         super(Task, self).save(*args, **kwargs)

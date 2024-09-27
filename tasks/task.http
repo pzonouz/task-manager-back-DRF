@@ -2,4 +2,8 @@
 ###
 GET /
 ###
+PATCH /89fa10ae-32c8-49ee-b0aa-04744b2edf81/
+Content-Type: application/json
+{"progress_percentage":0}
+###
 DELETE /2/
