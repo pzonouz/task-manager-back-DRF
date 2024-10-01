@@ -4,13 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+django-rest-swagger = "*"
 django = "*"
 djangorestframework = "*"
-psycopg2 = "*"
-django-cors-headers = "*"
-django-rest-swagger = "*"
-setuptools = "*"
-drf-yasg = "*"
+djoser = "*"
+djangorestframework-simplejwt = "*"
+social-auth-app-django = "*"
 
 [dev-packages]
 

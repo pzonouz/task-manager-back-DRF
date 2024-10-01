@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "drf_yasg",
+    "djoser",
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [
@@ -140,3 +143,25 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.User"
 CORS_ALLOW_ALL_ORIGINS = True
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+}
+DJOSER = {
+    "USER_CREATE_PASSWORD_RETYPE": True,
+    "PASSWORD_RESET_CONFIRM_URL": "#/password/reset/confirm/{uid}/{token}",
+    # "USERNAME_RESET_CONFIRM_URL": "#/username/reset/confirm/{uid}/{token}",
+    "ACTIVATION_URL": "#/activate/{uid}/{token}",
+    "SEND_ACTIVATION_EMAIL": True,
+    # "SERIALIZERS": {},
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=15),
+    # "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "AUTH_HEADER_TYPES": ("JWT",),
+    # "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
+    # "USER_ID_FIELD": "id",
+    # "USER_ID_CLAIM": "user_id",
+}

@@ -5,7 +5,7 @@ from drf_yasg import openapi
 from categories.views import CategoryViewSet
 
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 
 from priorities.views import PriorityViewSet
 from tasks.views import TaskCompleteView, TaskViewSet
@@ -29,6 +29,10 @@ schema_view = get_schema_view(
 )
 urlpatterns += [
     path("api/v1/tasks/<slug:id>/complete-task/", TaskCompleteView.as_view())
+]
+urlpatterns += [
+    re_path("^api/v1/auth/", include("djoser.urls")),
+    re_path("^api/v1/auth/", include("djoser.urls.jwt")),
 ]
 
 router = SimpleRouter()
