@@ -158,8 +158,7 @@ DJOSER = {
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=15),
-    # "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=30 * 12),
     "AUTH_HEADER_TYPES": ("JWT",),
     # "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
     # "USER_ID_FIELD": "id",
