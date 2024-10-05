@@ -12,10 +12,13 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+dotenv_path = os.path.join(BASE_DIR, ".env")
+load_dotenv(dotenv_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -24,7 +27,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-vma66)tw@xw9mca$-nf@6-_5ikyvh2esuc#zop)b00a#5+zj2@"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if str(os.getenv("DEBUG")) == "True":
+    DEBUG = True
+else:
+    DEBUG = False
+
 
 ALLOWED_HOSTS = ["*"]
 
@@ -91,11 +98,11 @@ DATABASES = {
     # }
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "task_manager_db",
-        "USER": "postgres",
-        "PASSWORD": "secret",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "NAME": os.getenv("DATABASE_NAME"),
+        "USER": os.getenv("DATABASE_USER"),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+        "HOST": os.getenv("DATABASE_HOST"),
+        "PORT": os.getenv("DATABASE_PORT"),
     }
 }
 
@@ -150,9 +157,9 @@ REST_FRAMEWORK = {
 }
 DJOSER = {
     "USER_CREATE_PASSWORD_RETYPE": True,
-    "PASSWORD_RESET_CONFIRM_URL": "#/password/reset/confirm/{uid}/{token}",
+    "PASSWORD_RESET_CONFIRM_URL": "api/v1/auth/password/reset/confirm/{uid}/{token}",
     # "USERNAME_RESET_CONFIRM_URL": "#/username/reset/confirm/{uid}/{token}",
-    "ACTIVATION_URL": "#/activate/{uid}/{token}",
+    "ACTIVATION_URL": "api/v1/auth/activate/{uid}/{token}",
     "SEND_ACTIVATION_EMAIL": True,
     # "SERIALIZERS": {},
 }
@@ -164,3 +171,9 @@ SIMPLE_JWT = {
     # "USER_ID_FIELD": "id",
     # "USER_ID_CLAIM": "user_id",
 }
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv("GMAIL_USERNAME")
+EMAIL_HOST_PASSWORD = os.getenv("GMAIL_PASSWORD_SEND_EMAIL")
