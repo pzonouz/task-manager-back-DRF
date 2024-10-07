@@ -159,13 +159,16 @@ DJOSER = {
     "USER_CREATE_PASSWORD_RETYPE": True,
     "PASSWORD_RESET_CONFIRM_URL": "api/v1/auth/password/reset/confirm/{uid}/{token}",
     # "USERNAME_RESET_CONFIRM_URL": "#/username/reset/confirm/{uid}/{token}",
-    "ACTIVATION_URL": "api/v1/auth/activate/{uid}/{token}",
+    # FIXME: Customize email template
+    # FIXME: Handle email send error
     "SEND_ACTIVATION_EMAIL": True,
     # "SERIALIZERS": {},
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=30 * 12),
+    "ACCESS_TOKEN_LIFETIME": timedelta(
+        hours=int(os.getenv("SIMPLE_JWT_ACCESS_TOKEN_LIFETIME", 24)) * 60
+    ),
     "AUTH_HEADER_TYPES": ("JWT",),
     # "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
     # "USER_ID_FIELD": "id",

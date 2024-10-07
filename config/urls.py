@@ -10,9 +10,11 @@ from django.urls import include, path, re_path
 from priorities.views import PriorityViewSet
 from tasks.views import TaskCompleteView, TaskViewSet
 
+from users.views import JwtObtainPairView
+
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("api/v1/admin/", admin.site.urls),
 ]
 
 schema_view = get_schema_view(
@@ -29,6 +31,9 @@ schema_view = get_schema_view(
 )
 urlpatterns += [
     path("api/v1/tasks/<slug:id>/complete-task/", TaskCompleteView.as_view())
+]
+urlpatterns += [
+    path("api/v1/auth/jwt/create/", JwtObtainPairView.as_view(), name="jwt_obtain_pair")
 ]
 urlpatterns += [
     re_path("^api/v1/auth/", include("djoser.urls")),

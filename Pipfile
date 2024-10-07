@@ -11,6 +11,9 @@ djoser = "*"
 djangorestframework-simplejwt = "*"
 social-auth-app-django = "*"
 python-dotenv = "*"
+django-cors-headers = "*"
+drf-yasg = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
