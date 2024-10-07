@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7df8d16a27dfcdebac4f9895c7ee954cce827608bc7a359d5696bcbea86624a1"
+            "sha256": "74fa34a51d80f8dd5ccda703cef46a01d7b9340009eca3be0f9fe92451e56d8a"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.12"
+            "python_version": "3.11"
         },
         "sources": [
             {
@@ -262,7 +262,6 @@
                 "sha256:71603f27dac22a6533fb38d83072eea9ddb4017fead6f67f2562a40402d61c3f"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.10'",
             "version": "==5.1.1"
         },
         "django-rest-swagger": {
@@ -286,7 +285,6 @@
                 "sha256:36fe88cd2d6c6bec23dca9804bab2ba5517a8bb9d8f47ebc68981b56840107ad"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.8'",
             "version": "==3.15.2"
         },
         "djangorestframework-simplejwt": {
@@ -295,7 +293,6 @@
                 "sha256:6c4bd37537440bc439564ebf7d6085e74c5411485197073f508ebdfa34bc9fae"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.8'",
             "version": "==5.3.1"
         },
         "djoser": {
@@ -304,7 +301,6 @@
                 "sha256:28545bfb15096dd26e0d74b49b4dd267c0a8d5f9d562225ecc60c83289799131"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.8' and python_version < '4.0'",
             "version": "==2.2.3"
         },
         "idna": {
@@ -432,7 +428,6 @@
                 "sha256:f7b63ef50f1b690dddf550d03497b66d609393b40b564ed0d674909a68ebf16a"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.8'",
             "version": "==1.0.1"
         },
         "python3-openid": {
@@ -580,7 +575,6 @@
                 "sha256:c8832c6cf13da6ad76f5613bcda2647d89ae7cfbc5217fadd13477a3406feaa8"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.8'",
             "version": "==5.4.2"
         },
         "social-auth-core": {
