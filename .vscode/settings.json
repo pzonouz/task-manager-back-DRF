@@ -6,6 +6,7 @@
     "simplejwt",
     "viewset",
     "viewsets",
+    "wrapmodule",
     "yasg"
   ],
   "workbench.colorCustomizations": {

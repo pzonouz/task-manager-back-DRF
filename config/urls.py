@@ -35,6 +35,7 @@ urlpatterns += [
 urlpatterns += [
     path("api/v1/auth/jwt/create/", JwtObtainPairView.as_view(), name="jwt_obtain_pair")
 ]
+# TODO:Implement Logout
 urlpatterns += [
     re_path("^api/v1/auth/", include("djoser.urls")),
     re_path("^api/v1/auth/", include("djoser.urls.jwt")),

@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+# from django.core.mail import send_mail
+
 from datetime import timedelta
 from pathlib import Path
 import os
@@ -65,6 +67,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    "config.cookie_to_header_middleware.cookie_to_header_middleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -157,11 +160,15 @@ REST_FRAMEWORK = {
 }
 DJOSER = {
     "USER_CREATE_PASSWORD_RETYPE": True,
-    "PASSWORD_RESET_CONFIRM_URL": "api/v1/auth/password/reset/confirm/{uid}/{token}",
+    "PASSWORD_RESET_CONFIRM_URL": "#/api/v1/auth/password/reset/confirm/{uid}/{token}",
     # "USERNAME_RESET_CONFIRM_URL": "#/username/reset/confirm/{uid}/{token}",
-    # FIXME: Customize email template
-    # FIXME: Handle email send error
-    "SEND_ACTIVATION_EMAIL": True,
+    "ACTIVATION_URL": "#/api/v1/auth/activate/{uid}/{token}",
+    # TODO: Activate On Host-Network Error on my ISP
+    "SEND_ACTIVATION_EMAIL": False,
+    # FIXME: Customize Email Template by This line:
+    # "EMAIL": {
+    #     "activation": "your_project.email.ActivationEmail",  # Custom email
+    # },
     # "SERIALIZERS": {},
 }
 
@@ -175,8 +182,19 @@ SIMPLE_JWT = {
     # "USER_ID_CLAIM": "user_id",
 }
 
+# EMAIL_BACKEND = "config.custom_email_backend.ProxyEmailBackend"
 EMAIL_USE_TLS = True
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.getenv("GMAIL_USERNAME")
 EMAIL_HOST_PASSWORD = os.getenv("GMAIL_PASSWORD_SEND_EMAIL")
+EMAIL_TIMEOUT = 120
+
+
+# send_mail(
+#     subject="test",
+#     message="Test",
+#     recipient_list=["p.zonouz@gmail.com"],
+#     from_email="drf@gmail.com",
+#     fail_silently=False,
+# )
