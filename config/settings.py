@@ -153,6 +153,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.User"
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
@@ -163,7 +164,7 @@ DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "#/api/v1/auth/password/reset/confirm/{uid}/{token}",
     # "USERNAME_RESET_CONFIRM_URL": "#/username/reset/confirm/{uid}/{token}",
     "ACTIVATION_URL": "#/api/v1/auth/activate/{uid}/{token}",
-    # TODO: Activate On Host-Network Error on my ISP
+    # TODO: Activate On Host-Network, Error on my ISP
     "SEND_ACTIVATION_EMAIL": False,
     # FIXME: Customize Email Template by This line:
     # "EMAIL": {
@@ -171,10 +172,13 @@ DJOSER = {
     # },
     # "SERIALIZERS": {},
 }
+# print(int(os.getenv("SIMPLE_JWT_ACCESS_TOKEN_LIFETIME_HOURS")))
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(
-        hours=int(os.getenv("SIMPLE_JWT_ACCESS_TOKEN_LIFETIME", 24)) * 60
+        # FIXME: Make parametric
+        # hours=int(os.getenv("SIMPLE_JWT_ACCESS_TOKEN_LIFETIME_HOURS", 24))
+        days=365
     ),
     "AUTH_HEADER_TYPES": ("JWT",),
     # "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",

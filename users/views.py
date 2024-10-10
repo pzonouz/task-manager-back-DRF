@@ -1,4 +1,3 @@
-import os
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework.response import Response
@@ -19,9 +18,11 @@ class JwtObtainPairView(TokenObtainPairView):
             "access",
             response.data["access"],
             httponly=True,
-            secure=True,
-            samesite="none",
+            secure=False,
+            samesite="Lax",
             path="/",
-            max_age=int(os.getenv("SIMPLE_JWT_ACCESS_TOKEN_LIFETIME", 24)) * 60,
+            # FIXME: Make Max age parametric
+            # max_age=int(os.getenv("SIMPLE_JWT_ACCESS_TOKEN_LIFETIME_HOURS")),
+            max_age=3600 * 24 * 365,
         )
         return response
