@@ -7,7 +7,7 @@ class Task(models.Model):
     id = models.UUIDField(
         primary_key=True, unique=True, default=uuid.uuid4, editable=False
     )
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     description = models.TextField()
     priority = models.ForeignKey(
         "priorities.Priority", on_delete=models.CASCADE, related_name="tasks"
@@ -25,6 +25,9 @@ class Task(models.Model):
     progress_percentage = models.IntegerField(
         default=0, validators=[MaxValueValidator(100), MinValueValidator(0)]
     )
+
+    class Meta:
+        unique_together = ("name", "user")
 
     def __str__(self):
         return self.name
